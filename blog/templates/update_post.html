@@ -1,0 +1,33 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Update Post{% endblock %} 
+
+{% block content %}
+{% if user.is_authenticated and user.id == post.author.id%}
+<div class="container">
+    <div class="d-flex justify-content-center shadow-lg">
+			<div class="col-lg-6 bg-dark m-4  p-2 shadow-lg-light rounded">
+				<div class="col-10 mx-auto text-warning font-weight-bold">
+					
+				
+					<h1 class="font-weight-bold text-center">Update blog Post</h1>
+					<hr style="background-color: orange ;">
+
+
+					<form method="POST">
+						{% csrf_token %} {{form | crispy}}
+						<input type="submit" value="Update" />
+					</form>
+					{% else %}
+					<p>
+						you are not authorised to perform the action
+					</p>	
+					{% endif %}
+				</div>
+			</div>
+	</div>
+    </div>
+</div>
+
+					{% endblock %}

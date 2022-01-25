@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+cinemia
+{% endblock %}
+
+{% block content %}
+
+<body>
+  <!-- *******************about-us section**************************-->
+  <section class="p-5" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="text-center">ABOUT US</h2>
+          <center>
+            <hr style="width: 120px; background: orange;text-align: center; height: 5px; ">
+          </center>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md">
+        <div class="card text-dark" style="border: 0px;">
+          <div class="card-body text-center">
+            <p class="card-text text-justify">
+              {{MyAbout.Content}} <br>
+
+            </p>
+            <a href="#"><button class="btn btn-warning" style="width: 200px; height:50px">Read More</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="card text-dark" style="border: 0px;">
+          <div class="card-body text-center">
+            <img src="{{MyAbout.Image.url}}" class="img-thumbnail" width="400px" style="height: 275px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+  </section>
+
+  <!-- what we offer section -->
+  <section style="background-color: #000;" id="offers">
+
+    <div class="container">
+      <div class="col-12 pt-2">
+        <h2 class="text-center text-light">WHAT WE DO</h2>
+        <center>
+          <hr style="width: 120px; background: orange;text-align: center; height: 5px; ">
+        </center>
+      </div>
+    </div>
+    </div>
+    <div class="row text-center justify-content-around p-lg-5 mb-lg-5">
+      {% for Offer in offers %}
+      <div class="col-sm-3">
+        <div class="h1 mb-3">
+          <i class="{{Offer.Icons}} text-light"></i>
+        </div>
+        <h3 class="m-2 text-light font-weight-bold">{{Offer.title}}</h3>
+        <p class="text-justify text-secondary">
+          {{Offer.Content}}
+        </p>
+        <a href="#" class="btn m-3 "><button class="btn btn-warning btn-block font-weight-bold"
+            style="width: 200px; height: 50px;">Read More</button></a>
+      </div>
+      {% endfor %}
+
+
+    </div>
+
+    </div>
+  </section>
+
+  <!-- ************Teams section *********************-->
+  <section class="p-2" id="Our-team">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="text-center ">OUR TEAM</h2>
+          <center>
+            <hr style="width: 120px; background: orange;text-align: center; height: 5px; ">
+          </center>
+        </div>
+      </div>
+      <div class="row text-center p-1">
+        <div class="col-lg-12">
+          <div class="card text-dark" id="" style="border: 0px;">
+            <div class="card-body text-center d-flex">
+
+              {% for team in teams %}
+              <div id="profile">
+                <img src="{{team.image.url}}" alt="" width="110px" height="140px" class="mt-2 "
+                  style="border-radius: 50%">
+              </div>
+              <div class="pl-3">
+
+                <h5 class="font-weight-bold text-left" style=" color:black;" class="pl-1 ">{{team.Name}}</h5>
+                <h5 class="font-weight-bold text-left" style=" color:black;" class="pl-1 ">{{team.Title}}</h5>
+                <p style="text-align: left; " class="pl-1">
+                  {{team.description}}
+                </p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!--***************** blog posts**********************-->
+
+  <section class="text-light" style="background-color: #000000" id="blog">
+    <h1 class="pt-4">Blog Posts</h1>
+    <center>
+      <hr style="width: 120px; background: orange;text-align: center; height: 5px; ">
+    </center>
+    <hr>
+    <!--    TODO: Fetch data from database-->
+    <div class="container-fluid">
+      <div class="row text-center pb-lg-5">
+        {% for post in blogs %}
+
+        <div class="col-md-4 col-sm-12">
+          <a href="{% url 'blog:detail' post.id %}">
+            <img class="m-4" src="{{ post.image.url }}" alt="" width="200" height="300">
+          </a>
+          <h4>{{ post.date_added }}</h4>
+          <h4>{{ post.author }}</h4>
+          <h3>{{ post.title }}</h3>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+  <!-- Get In Touch -->
+  <section class="p-5" id="get">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 pt-2">
+          <h2 class="text-center text-dark">GET IN TOUCH</h2>
+          <center>
+            <hr style="width: 120px; background: orange;text-align: center; height: 5px; ">
+          </center>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md">
+        <div class="card text-dark" id="teamSection" style="border: 0px;">
+          <div class="card-body text-center">
+            <h3 class="card-title">
+              Social Links
+            </h3>
+            <div>
+              <div>
+                <a class="text-decoration-none" href="" target="_blank"><i class="fab fa-instagram fa-5x "
+                    style="color:grey;"></i></a>
+                <a class="text-decoration-none" href="" target="_blank"><i class="fab fa-twitter fa-5x"
+                    style="color:grey;padding:20px;"></i></a><br>
+                <a class="text-decoration-none" href="" target="_blank"><i class="fab fa-facebook fa-5x"
+                    style="color:grey;"></i></a>
+                <a class="text-decoration-none" href="" target="_blank"><i class="fab fa-whatsapp fa-5x"
+                    style="color:grey; padding:20px;"></i></a>
+              </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card text-dark" id="teamSection" style="border: 0px;">
+          <div class="card-body text-center">
+            <h3 class="card-title">
+              SiteMap
+            </h3>
+
+            <h5 class="card-title pt-5">
+              <a href="#"> Home</a>
+            </h5>
+            <h5 class="card-title pt-2">
+              <a href="#"> Our Team</a>
+            </h5>
+            <h5 class="card-title pt-2">
+              <a class="text-decoration" href="#"> Blog Posts</a>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card text-dark" id="teamSection" style="border: 0px;">
+          <div class="card-body text-center">
+            <h3 class="card-title">
+              Contact Us
+            </h3>
+
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                <input type="email" class="form-control bg-dark text-light" name="Email"
+                  placeholder="Enter Email Address">
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control bg-dark text-light" name="Subject" placeholder="Enter Subject">
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control bg-dark text-light" name="Body" rows="3"></textarea>
+              </div>
+              <div class=" bg-dark">
+                <button class="btn btn-dark btn-block font-weight-bold br-3"> submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- footer section-->
+  <section class="p-3" style="background-color: black">
+    <h1 class="text-center text-light font-weight" style=" font-size: 18px;">Copyright Jolivet & Ibrahim 2021</h1>
+  </section>
+</body>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+{{post.title}}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid " xmlns="http://www.w3.org/1999/html">
+    <div class="row justify-content-around">
+        <div class="col-lg-8  m-3">
+            <div class="col-12 bg-dark ">
+                <div class="col-lg-12 p-2 ml-2">
+                    <h5 class="text-warning">Review</h5>
+                    <hr style="background: orange">
+                </div>
+                <div class="col-lg-12" style="line-height: 2px">
+                    <h2 class="font-weight-bold text-uppercase text-warning">blog title- {{post.title}}</h2>
+                    <p class="font-weight-bold text-uppercase text-warning">
+                        by {{post.author}}
+                    </p>
+                    {% for tag in tags %}
+                    <p class="text-warning"> <a href="{% url 'blog:tag_detail' tag%}"># {{tag}} </a> </p>
+                    {% endfor %}
+                    <h6 class="text-warning font-weight-light text-capitalize">
+                        <!--                  <i class="far fa-clock fa-1x" style="width: 20px;height: 20px"></i>-->
+                        published {{post.date_added}}
+                    </h6>
+                </div>
+                <div class="col-lg-12 ">
+                    <img src="{{post.image.url}}" class="card-img-bottom shadow-lg" style="width:500px; height: auto;">
+                </div>
+                <div class="col-lg-12 text-light p-3 font-weight-lighter">
+                    <p>{{post.intro}} </p>
+
+                    <p>{{post.body}}</p>
+
+                </div>
+            </div>
+            <br>
+            <div class="col-lg-12 bg-dark p-3 text-warning shadow-lg">
+                <div class="bg-transparent border">
+                    <h2 class=" font-weight-white-50 text-capitalize ml-2 shadow">comments</h2>
+                </div>
+                {% for comment in post.comments.all %}
+                <div class="col-12 bg-transparent border">
+                    <p class="text-light text-uppercase"> <span class="font-weight-bolder">commented by</span>
+                        {{comment.name }} </p>
+                    <p class="text-light font-weight-lighter"> {{ comment.body}}</p>
+                </div>
+                {% empty %}
+                <p class="font-weight-lighter ">Sorry, no comments yet</p>
+                {% endfor %}
+
+                <div class="col-lg-12 bg-transparent border">
+                    <h3 class="text-uppercase text-center">Add comment</h3>
+
+                    <form class="form-group" method="POST">
+                        {% csrf_token %} {{form.as_p}}
+
+                        <input type="submit" value="Comment" class="btn btn-warning btn-lg btn-block" /><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--        related movies part-->
+        <div class="col-lg-3  m-3 p-3">
+            <h3 CLASS="text-warning">Related Blogs</h3>
+            {% for related_post in related_posts %}
+            <hr style="background: orange">
+            <div class="col-12 bg-dark">
+                <a href="{% url 'blog:detail' related_post.id}">
+                    <img src="{{related_post.image.url}}" class=" pt-2 card-img " style="width: 100%;height: 100px"></a>
+                <p class="font-weight-bolder text-light pb-2">{{related_post.title}}</p>
+            </div>
+            {% empty %}
+            <p>No related post</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+<!--<img src=" {{post.image.url}}" width="100" height="50">-->
+<!--&lt;!&ndash; <h1>{{post.image.url}}</h1> &ndash;&gt;-->
+<!--<h1>{{post.title}}</h1>-->
+<!--<h2>{{post.intro}}</h2>-->
+<!--<p>{{post.body}}</p>-->
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'registration/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+  <div class="d-flex justify-content-center shadow-lg">
+    <div class="col-lg-6 bg-dark m-4  p-2 shadow-lg-light rounded">
+      <div class="col-10 mx-auto text-warning font-weight-bold">
+  
+      
+        <h1 class="font-weight-bold text-center">Edit Profile</h1>
+        <hr style="background-color: orange ;">
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+
+                <button class="btn btn-outline-warning btn-lg btn-block pb-2" type="submit">Update</button> <br>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+    </div>
+{% endblock content %}

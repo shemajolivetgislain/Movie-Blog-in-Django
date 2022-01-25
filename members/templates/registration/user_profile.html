@@ -1,0 +1,51 @@
+{% extends 'registration/base.html'%}
+{% block content %}
+<div class="container h-100">
+    <h1 class="text-warning">User Profile</h1>
+    <div class="row">
+        <div class="col-8">
+            <div class="card mb-3 p-2" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img class='img-fluid rounded-circle' src="{{member.profile_pic.url}}" alt="">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{member.user.username}}</h5>
+                            <p class="card-text">{{member.user.email}}</p>
+
+                            <p class="card-text"><small class="text-muted">Date joined:
+                                    {{member.user.date_joined}}</small></p>
+                            <a class="btn btn-primary btn-rounded" href=" {% url 'edit_profile'%} ">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 card">
+            <div class="card-body">
+                <h5 class="card-title">Number of posts</h5>
+                <p class="card-text">{{number_of_posts}}</p>
+                <a href="{% url 'blog:add_post' %}" class="btn btn-primary">Add post</a>
+            </div>
+        </div>
+    </div>
+    {% for post in posts %}
+    <div class="row p-3 m-3 bg-dark">
+        <div class="col-1">
+            <a href="{% url 'blog:detail' post.id %}"> <img src="{{post.image.url}}" alt=""
+                    style="height: 70px; width: 70px;"> </a>
+        </div>
+        <div class="col-6">
+            <h4 class="text-warning"> {{post.title}} </h4>
+            <a href="{% url 'blog:detail' post.id %}">{{ post.body|truncatechars:80 }}</a>
+        </div>
+        <a href="{% url 'blog:update_post' post.pk %}">Edit <i class="far fa-edit"></i></a>
+        <a class="ml-2 text-danger" href="{% url 'blog:delete_post' post.pk %}">Delete <i
+                class="fas fa-trash-alt"></i></a>
+    </div>{% empty %}
+    <h1>No Posts, Add Post</h1>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

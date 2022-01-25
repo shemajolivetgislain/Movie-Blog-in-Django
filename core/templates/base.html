@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+   <link rel="stylesheet" href="{% static 'css/fontawesome-free-5.15.3-web/css/all.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+     <!-- ************ HERO SECTION ************-->
+     <header id="home">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-warning  static-top ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src=" {% static 'images/logo_edited.png' %}" >
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-right">
+          <li class="nav-item">
+            <a class="nav-link active text-warning" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-warning" href="#about">About</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link text-warning" href="#offers">What we do</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-warning" href="#Our-team">Team </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link text-warning" href="{% url 'blog:home' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-warning" href="#get">Get in touch</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="hero-section">
+    <div class="float-right">
+    <div class="container">
+        <div class="col-md-6 bg-warning" style="margin-top: 60px"></div>
+
+       <h1 class="text-warning">A Community of Movie lovers</h1>
+        <p class="text-white">
+        The Film Circle's mission is to offer a casual, weekly forum for people to view and discuss indie,<br>
+        foreign and classic films and meet others who share this interest.
+        </p>
+    <div id="action">
+        <a href="#">
+            <button class="btn btn-dark">More About Us</button>
+        </a>
+        <a href="#" class="b1">
+            <a href="{% url 'register' %}" class=" b1 btn btn-warning">Join our Community</a>
+        </a>
+    </div>
+        </div>
+        </div>
+</section>
+    </header>
+<!--#########About section ###############-->
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

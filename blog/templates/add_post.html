@@ -1,0 +1,41 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Add Blog Post
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="d-flex justify-content-center shadow-lg">
+		<div class="col-lg-6 bg-dark m-4  p-2 shadow-lg-light rounded">
+			<div class="col-10 mx-auto text-warning font-weight-bold">
+
+
+				<h1 class="font-weight-bold text-center">Add blog Post</h1>
+				<hr style="background-color: orange ;">
+
+				<form method="POST" id="form" enctype="multipart/form-data">
+					{% csrf_token %} {{form | crispy}}
+					<input type="submit" class="btn btn-outline-warning btn-lg btn-block pb-2" value="Post" /><br>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script>
+	var user_id = '{{user.id}}';
+	var form = document.getElementById('form')
+	var select = document.getElementById('id_author')
+	form.onload = function () {
+		select.hidden = true
+		const options = Array.from(select.options);
+		options.forEach((option, i) => {
+			if (option.value === user_id) select.selectedIndex = i;
+		});
+	}();
+
+</script>
+
+{% endblock %}

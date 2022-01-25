@@ -1,0 +1,54 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+Blog Home{% endblock %}
+
+{% block content %}
+
+{% for post in posts %}
+
+<div class="container">
+	<div class="row main-row p-2 ml-6 bg-dark">
+		<div class="col-lg-4 col-md-12 col-sm-12">
+			<!--image division-->
+			<div class="blog-img">
+				<img src="{{post.image.url}}" class="img-fluid" width="100px" height="100px">
+			</div>
+			<div class="row">
+			</div>
+		</div>
+		<div class="col-lg-8 col-lg-4 col-md-12 col-sm-12">
+			<div class="blog-title mb-3">
+				<h3 class="text-warning"> {{ post.title }}</h3>
+			</div>
+			<div class="blog-date mb-2">
+				<p class="text-warning"><i class="far fa-clock fa-1x" style="width: 20px;height: 20px"></i>
+					{{post.date_added }}</p>
+			</div>
+			<div class="blog-desc mb-2">
+				<p class="text-light">
+					{{ post.body|truncatechars:200 }}
+				</p>
+				<p class="text-warning" style="text-transform: uppercase;font-weight: bold;"> <i
+						class="fas fa-user"></i> Published by {{ post.author }}</p>
+				<div>
+
+					{% if user.is_authenticated and user.id == post.author.id%}
+					<a href="{% url 'blog:update_post' post.pk %}">Edit <i class="far fa-edit"></i></a>
+					<a class="ml-2 text-danger" href="{% url 'blog:delete_post' post.pk %}">Delete <i
+							class="fas fa-trash-alt"></i></a>
+					{% else %} {% endif %}
+				</div>
+			</div>
+
+			<div class="blog-read-more mb-2">
+
+				<a href="{% url 'blog:detail' post.id %}" class="btn btn-outline-warning"> read more</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% empty %}
+<li>Sorry, no posts</li>
+{% endfor %}
+{% endblock %}

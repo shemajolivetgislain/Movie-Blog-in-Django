@@ -1,0 +1,21 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+Delete Post{% endblock %}
+
+{% block content %}
+<div class="container h-100">
+
+	{% if user.is_authenticated and user.id == post.author.id%}
+	<h1 class="text-warning">Delete blog Post</h1>
+
+	<form method="POST" class="h-100">
+		{% csrf_token %}
+		<strong class="text-warning">Are you sure you want to delete</strong>
+		<input class="btn-danger" type="submit" value="Delete Post" />
+	</form>
+	{% else %}
+	<p>You are not authorised to access the page</p>
+</div>
+{% endif %}
+{% endblock %}

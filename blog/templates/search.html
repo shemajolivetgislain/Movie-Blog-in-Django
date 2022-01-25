@@ -1,0 +1,28 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<br>
+<div class="container h-100">
+    <div class="row ">
+        <div class="col-12 d-flex flex-column">
+            <h2 class="text-center text-capitalize text-warning">You Searched For {{ search }}</h2>
+
+            {% for post in posts %}
+            <div class="row p-3 m-3 bg-dark">
+                <div class="col-1">
+                    <a href="{% url 'blog:detail' post.id %}"> <img src="{{post.image.url}}" alt=""
+                            style="height: 70px; width: 70px;"> </a>
+                </div>
+                <div class="col-6">
+                    <h4 class="text-warning"> {{post.title}} </h4>
+                    <a href="{% url 'blog:detail' post.id %}">{{ post.body|truncatechars:80 }}</a>
+                </div>
+            </div>{% empty %}
+            <h2>No Search result</h2>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
