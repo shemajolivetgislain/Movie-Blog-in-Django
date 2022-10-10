@@ -1,2 +1,1 @@
 # Movie-Blog-in-Django
-
